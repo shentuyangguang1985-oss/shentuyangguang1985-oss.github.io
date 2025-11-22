@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>申屠阳光 | 资深数据仓库专家</title>
+    
+    <!-- 引入中文字体：思源宋体(标题) 和 思源黑体(正文) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* 核心配色方案 - 复刻参考图 */
+            --dark-green: #1e4d40;   /* 墨绿色 - 用于重点区域 */
+            --warm-brown: #a67b5b;   /* 暖棕色 - 用于Hero区域背景 */
+            --soft-beige: #f5efeb;   /* 浅米粉 - 用于背景 */
+            --text-main: #2c2c2c;    /* 深灰 - 正文 */
+            --white: #ffffff;
+            --accent-gold: #c6a88f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--white);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .serif-font {
+            font-family: 'Noto Serif SC', serif; /* 宋体，营造高级感 */
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* 导航栏 */
+        nav {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn {
+            background-color: var(--dark-green);
+            color: var(--white);
+            padding: 10px 25px;
+            font-size: 0.85rem;
+        }
+
+        /* Hero 区域 - 棕色背景大图风格 */
+        header {
+            position: relative;
+            min-height: 85vh;
+            background-color: var(--warm-brown);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* 模拟参考图的背景图层 */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%; /* 左半边是图片 */
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.9;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(166, 123, 91, 0.95); /* 棕色半透明遮罩 */
+            padding: 60px;
+            max-width: 600px;
+            margin-left: 30%; /* 偏移布局 */
+            color: var(--white);
+            box-shadow: -20px 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .header-subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            line-height: 1.3;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        header p {
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .btn-white {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--warm-brown);
+            padding: 15px 40px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .btn-white:hover {
+            background-color: var(--dark-green);
+            color: var(--white);
+        }
+
+        /* 个人简介区 - 米色背景 + 拱形图 */
+        .intro-section {
+            background-color: var(--soft-beige);
+            padding: 100px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .intro-container {
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--warm-brown);
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #555;
+            text-align: justify;
+        }
+
+        /* 拱形图片裁剪 */
+        .arch-image {
+            width: 100%;
+            height: 500px;
+            background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1887&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center top;
+            border-radius: 250px 250px 0 0; /* 顶部圆拱 */
+            box-shadow: 20px 20px 0px rgba(255,255,255,0.5);
+        }
+
+        .btn-dark {
+            display: inline-block;
+            background-color: var(--dark-green);
+            color: var(--white);
+            padding: 15px 40px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 数据统计栏 - 墨绿色横条 */
+        .stats-bar {
+            background-color: var(--dark-green);
+            color: var(--white);
+            padding: 60px 20px;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 20px 0;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        /* 服务/项目板块 - 01, 02 布局 */
+        .services-section {
+            padding: 100px 20px;
+            background: var(--white);
+            position: relative;
+        }
+
+        /* 装饰性手写字 */
+        .cursive-title {
+            text-align: center;
+            font-family: "Brush Script MT", cursive; /* 模拟手写体 */
+            font-size: 4rem;
+            color: rgba(0,0,0,0.05);
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            z-index: 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        /* 交替布局项目 */
+        .project-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            max-width: 1100px;
+            margin: 0 auto 100px auto;
+            align-items: center;
+        }
+
+        .project-row.reverse {
+            direction: rtl; /* 用于反转图片和文字顺序 */
+        }
+
+        .project-row.reverse .project-content {
+            direction: ltr; /* 文字恢复正常方向 */
+            padding-left: 0;
+            padding-right: 60px;
+        }
+
+        .project-image {
+            height: 500px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 60px;
+            background-color: var(--soft-beige); /* 每一块文字都有背景 */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .big-number {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 4rem;
+            color: var(--text-main);
+            opacity: 0.1;
+            line-height: 1;
+            margin-bottom: -20px;
+        }
+
+        .project-content h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .project-content p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--text-main);
+            padding: 12px 30px;
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            width: fit-content;
+        }
+
+        .btn-outline:hover {
+            background: var(--text-main);
+            color: var(--white);
+        }
+
+        /* 底部图片网格 */
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            padding: 5px;
+        }
+
+        .insta-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+
+        .insta-img:hover { opacity: 0.8; }
+
+        /* Footer */
+        footer {
+            background-color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-social {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-info {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            header { display: block; }
+            header::before { width: 100%; height: 50%; }
+            .header-content { margin-left: 0; max-width: 100%; padding: 40px 20px; margin-top: 40vh; }
+            .intro-container, .project-row { grid-template-columns: 1fr; }
+            .arch-image { height: 350px; }
+            .stats-grid { flex-direction: column; gap: 30px; }
+            .project-row.reverse { direction: ltr; }
+            .project-content { padding: 40px 20px; }
+            .insta-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-inner { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-inner">
+            <div class="logo">申屠阳光</div>
+            <div class="nav-links">
+                <a href="#">首页</a>
+                <a href="#about">关于我</a>
+                <a href="#services">核心能力</a>
+                <a href="#contact" class="nav-btn">联系合作</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 头部 Hero (复刻棕色+文字遮罩) -->
+    <header>
+        <div class="header-content">
+            <div class="header-subtitle">18年数据行业实战专家</div>
+            <h1>停止混乱的数据堆砌，<br>开始真正的业务驱动。</h1>
+            <p>
+                我帮助企业从0到1搭建数据体系，将数据资产转化为清晰的商业价值。<br>
+                无需高昂的试错成本，直接复用行业最佳实践。
+            </p>
+            <a href="#contact" class="btn-white">开启合作</a>
+        </div>
+    </header>
+
+    <!-- 个人简介 (复刻米色背景+拱形图) -->
+    <section class="intro-section" id="about">
+        <div class="intro-container">
+            <div class="intro-text">
+                <div class="header-subtitle" style="color: var(--warm-brown);">关于我</div>
+                <h2>数据体系的构建者<br>与管理者</h2>
+                <p>
+                    我是申屠阳光，一名拥有18年经验的数据老兵。从早期的招商银行信用卡中心，到淘宝、蘑菇街，再到带领云器科技与锐鲨科技的数据团队，我见证并参与了数据技术从“支持”到“驱动”的演变。
+                </p>
+                <p>
+                    我不止写代码，我更关注如何让数据“好用”。无论是重构凯叔讲故事的全链路数据体系，还是为电商行业打造通用的数据中台模型，我的目标始终一致：**降低门槛，提升效率**。
+                </p>
+                <a href="#contact" class="btn-dark">查看完整履历</a>
+            </div>
+            <!-- 拱形图片 -->
+            <div class="arch-image"></div>
+        </div>
+    </section>
+
+    <!-- 数据统计条 (墨绿色背景) -->
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>18+</h3>
+                <p>年数据从业经验</p>
+            </div>
+            <div class="stat-item">
+                <h3>12+</h3>
+                <p>业务领域覆盖</p>
+            </div>
+            <div class="stat-item">
+                <h3>80%</h3>
+                <p>核心报表覆盖率提升</p>
+            </div>
+            <div class="stat-item">
+                <h3>200+</h3>
+                <p>精准营销指标沉淀</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务/项目板块 (01, 02 交替布局) -->
+    <section class="services-section" id="services">
+        <div class="cursive-title">My Expertise</div> <!-- 装饰性背景字 -->
+        
+        <div class="section-header">
+            <h2>核心解决方案</h2>
+            <p>结合技术深度与业务广度，为您提供可落地的全链路数据服务</p>
+        </div>
+
+        <!-- 项目 01 -->
+        <div class="project-row">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="数据分析" class="project-image">
+            <div class="project-content">
+                <div class="big-number">01</div>
+                <h3>数据体系 0→1 建设</h3>
+                <p>
+                    针对企业数据基础薄弱的痛点，提供从埋点采集、数仓建模到指标体系搭建的一站式方案。
+                    <br><br>
+                    <strong>案例：</strong> 为云器科技设计电商通用模型，支持多源数据接入，实现“开箱即用”，让客户直接进入分析与运营阶段。
+                </p>
+                <a href="#" class="btn-outline">查看详情</a>
+            </div>
+        </div>
+
+        <!-- 项目 02 (反向) -->
+        <div class="project-row reverse">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop" alt="团队管理" class="project-image">
+            <div class="project-content">
+                <div class="big-number">02</div>
+                <h3>数据治理与重构</h3>
+                <p>
+                    解决长期积累的“指标不一致、数据质量差、响应慢”问题。通过标准化与自动化，重建数据信任。
+                    <br><br>
+                    <strong>案例：</strong> 凯叔讲故事大数据体系改造，重构12大主题域，建立统一DQC体系，将关键链路出数时间大幅提前。
+                </p>
+                <a href="#" class="btn-outline">查看详情</a>
+            </div>
+        </div>
+
+        <!-- 项目 03 -->
+        <div class="project-row">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" alt="业务增长" class="project-image">
+            <div class="project-content">
+                <div class="big-number">03</div>
+                <h3>业务驱动与赋能</h3>
+                <p>
+                    跳出技术视角，深入业务场景。构建“人货场”分析框架与标签体系，直接支持精准营销与策略复盘。
+                    <br><br>
+                    <strong>案例：</strong> 蘑菇街直播业务数据体系，打通人货场模型，沉淀“开播前-中-后”全链路分析框架。
+                </p>
+                <a href="#" class="btn-outline">查看详情</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- 底部图片墙 (复刻参考图底部) -->
+    <section class="insta-grid">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" class="insta-img" alt="Office">
+        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop" class="insta-img" alt="Meeting">
+        <img src="https://images.unsplash.com/photo-1504384308090-c54be3855833?q=80&w=1924&auto=format&fit=crop" class="insta-img" alt="Data">
+        <img src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc?q=80&w=2069&auto=format&fit=crop" class="insta-img" alt="Work">
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <h2 style="font-family: 'Noto Serif SC'; margin-bottom: 20px;">准备好重塑您的数据资产了吗？</h2>
+        <p style="margin-bottom: 30px;">欢迎通过以下方式与我联系，探讨数据体系建设与治理。</p>
+        
+        <div style="margin-bottom: 40px; font-weight: bold; color: var(--dark-green);">
+            18658867635 &nbsp;&nbsp;|&nbsp;&nbsp; styangguang@163.com
+        </div>
+
+        <div class="footer-info">
+            版权所有 &copy; 2025 申屠阳光. 保留所有权利.
+        </div>
+    </footer>
+
+</body>
+</html>
