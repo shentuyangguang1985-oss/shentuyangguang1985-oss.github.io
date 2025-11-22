@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>申屠阳光 | 资深数据仓库专家</title>
     
-    <!-- 引入中文字体 -->
+    <!-- 引入字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
             --soft-beige: #f5efeb;
             --text-main: #2c2c2c;
             --white: #ffffff;
-            --modal-bg: rgba(0, 0, 0, 0.7);
+            --modal-bg: rgba(0, 0, 0, 0.85);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -130,7 +130,7 @@
         .intro-text h2 { font-size: 2.5rem; margin-bottom: 30px; color: var(--warm-brown); }
         .intro-text p { margin-bottom: 20px; color: #555; text-align: justify; }
         
-        /* === 修复版图片样式 === */
+        /* 拱形图片样式 */
         .arch-image-wrapper {
             position: relative;
             width: 100%;
@@ -140,31 +140,33 @@
             width: 100%;
             height: 100%;
             
-            /* 默认尝试加载 profile.jpg */
-            background-image: url('./profile.jpg'); 
+            /* 
+               【关键修改】
+               这里已改回读取本地文件 profile.jpg
+               请确保您将那张西装照片重命名为 profile.jpg 并放在同一文件夹
+            */
+            background-image: url('./profile.jpg');
             
             background-size: cover;
             background-position: center top; 
             border-radius: 300px 300px 0 0;
             box-shadow: 20px 20px 0px rgba(255,255,255,0.5);
-            background-color: #cccccc; /* 加载失败时的底色 */
-            cursor: pointer; /* 鼠标变成手型，提示可点击 */
+            
+            /* 灰色占位底色（图片未加载时显示） */
+            background-color: #cccccc;
+            cursor: pointer; /* 鼠标放上去变手型，提示可点击上传 */
             transition: 0.3s;
         }
-        .arch-image:hover {
-            opacity: 0.9;
-        }
+        .arch-image:hover { opacity: 0.9; }
+        
         /* 提示文字 */
         .upload-hint {
-            position: absolute;
-            bottom: 20px; left: 0; right: 0;
-            text-align: center;
-            color: rgba(255,255,255,0.8);
-            font-size: 0.8rem;
-            pointer-events: none;
+            position: absolute; bottom: 20px; left: 0; right: 0;
+            text-align: center; color: rgba(255,255,255,0.8);
+            font-size: 0.8rem; pointer-events: none;
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
-
+        
         .btn-dark {
             display: inline-block;
             background-color: var(--dark-green);
@@ -177,18 +179,32 @@
         }
         .btn-dark:hover { background-color: #15382f; }
 
-        /* --- 数据统计栏 --- */
+        /* --- 核心指标栏 --- */
         .stats-bar { background-color: var(--dark-green); color: var(--white); padding: 60px 20px; }
         .stats-grid {
             max-width: 1200px; margin: 0 auto;
-            display: flex; justify-content: space-around;
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 20px;
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.2);
             border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding: 20px 0;
+            padding: 40px 0;
         }
-        .stat-item h3 { font-size: 3rem; font-weight: 400; margin-bottom: 5px; }
-        .stat-item p { font-size: 0.9rem; letter-spacing: 1px; opacity: 0.8; text-transform: uppercase; }
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10px;
+            height: 100%;
+        }
+        .stat-item h3 { 
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            line-height: 1.4;
+            margin: 0;
+        }
 
         /* --- 服务/项目板块 --- */
         .services-section { padding: 100px 20px; background: var(--white); position: relative; }
@@ -204,8 +220,10 @@
             display: grid; grid-template-columns: 1fr 1fr; gap: 0;
             max-width: 1100px; margin: 0 auto 100px auto; align-items: center;
         }
+        /* 交替布局逻辑 */
         .project-row.reverse { direction: rtl; }
         .project-row.reverse .project-content { direction: ltr; padding-left: 0; padding-right: 60px; }
+        
         .project-image { height: 500px; width: 100%; object-fit: cover; }
         .project-content {
             padding: 60px; background-color: var(--soft-beige);
@@ -240,8 +258,8 @@
             animation: fadeIn 0.3s;
         }
         .modal-content {
-            background-color: var(--white); margin: 5% auto; padding: 40px;
-            border: 1px solid #888; width: 80%; max-width: 800px;
+            background-color: var(--white); margin: 5% auto; padding: 50px;
+            border: 1px solid #888; width: 85%; max-width: 900px;
             position: relative; border-radius: 4px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
@@ -250,14 +268,22 @@
         }
         .close-btn:hover { color: var(--dark-green); }
         .modal-title { font-family: 'Noto Serif SC'; font-size: 1.8rem; color: var(--dark-green); margin-bottom: 25px; border-bottom: 2px solid var(--soft-beige); padding-bottom: 15px; }
-        .timeline-item { margin-bottom: 30px; padding-left: 20px; border-left: 3px solid var(--warm-brown); }
+        
+        /* 履历列表样式 */
+        .timeline-item { margin-bottom: 35px; padding-left: 20px; border-left: 3px solid var(--warm-brown); }
         .timeline-date { color: #999; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; }
         .timeline-role { font-size: 1.2rem; font-weight: bold; color: var(--text-main); }
-        .timeline-company { color: var(--dark-green); font-weight: bold; margin-bottom: 8px; display: block;}
-        .modal-detail-section { margin-bottom: 25px; }
-        .modal-detail-section h4 { color: var(--warm-brown); margin-bottom: 10px; font-size: 1.1rem; border-left: 4px solid var(--dark-green); padding-left: 10px; }
+        .timeline-company { color: var(--dark-green); font-weight: bold; margin-bottom: 10px; display: block;}
+        .timeline-desc-list { margin-top: 8px; padding-left: 18px; }
+        .timeline-desc-list li { list-style-type: disc; font-size: 0.95rem; color: #555; margin-bottom: 6px; }
+
+        /* 项目详情样式 */
+        .modal-detail-section { margin-bottom: 30px; }
+        .modal-detail-section h4 { color: var(--warm-brown); margin-bottom: 12px; font-size: 1.1rem; border-left: 4px solid var(--dark-green); padding-left: 12px; font-weight: bold; }
         .modal-list { padding-left: 20px; }
-        .modal-list li { list-style-type: disc; margin-bottom: 8px; color: #555; }
+        .modal-list li { list-style-type: disc; margin-bottom: 8px; color: #444; line-height: 1.6; }
+        .modal-text { color: #444; line-height: 1.6; text-align: justify; }
+
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
         /* --- 响应式 --- */
@@ -267,7 +293,13 @@
             .header-content { margin-left: 0; max-width: 100%; padding: 40px 20px; margin-top: 40vh; }
             .intro-container, .project-row { grid-template-columns: 1fr; }
             .arch-image-wrapper { height: 400px; }
-            .stats-grid { flex-direction: column; gap: 30px; }
+            
+            /* 移动端指标栏调整 */
+            .stats-grid { 
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
             .project-row.reverse { direction: ltr; }
             .project-content { padding: 40px 20px; }
             .insta-grid { grid-template-columns: repeat(2, 1fr); }
@@ -312,80 +344,95 @@
                     我是申屠阳光，一名拥有18年经验的数据老兵。从早期的招商银行信用卡中心，到淘宝、蘑菇街，再到带领云器科技与锐鲨科技的数据团队，我见证并参与了数据技术从“支持”到“驱动”的演变。
                 </p>
                 <p>
-                    我不止写代码，我更关注如何让数据“好用”。无论是重构凯叔讲故事的全链路数据体系，还是为电商行业打造通用的数据中台模型，我的目标始终一致：**降低门槛，提升效率**。
+                    我不止写代码，我更关注如何让数据“好用”。无论是重构凯叔讲故事的全链路数据体系，还是为电商行业打造通用的数据中台模型，我的目标始终一致：<strong>降低数据使用门槛，提升数据辅导业务决策效率</strong>。
                 </p>
                 <button class="btn-dark" onclick="openModal('resumeModal')">查看完整履历</button>
             </div>
             
-            <!-- 图片区域：增加了点击上传功能 -->
+            <!-- 图片区域：支持点击上传/读取本地 profile.jpg -->
             <div class="arch-image-wrapper">
                 <div class="arch-image" id="myArchImage" onclick="document.getElementById('fileInput').click()"></div>
-                <div class="upload-hint">如果照片未显示，请点击这里选择照片</div>
+                <!-- 提示文字 -->
+                <div class="upload-hint">若照片未显示，请点此上传 profile.jpg</div>
             </div>
-            <!-- 隐藏的文件上传控件 -->
             <input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="loadImage(this)">
-
         </div>
     </section>
 
+    <!-- 核心指标栏 -->
     <section class="stats-bar">
         <div class="stats-grid">
-            <div class="stat-item"><h3>18+</h3><p>年数据从业经验</p></div>
-            <div class="stat-item"><h3>12+</h3><p>业务领域覆盖</p></div>
-            <div class="stat-item"><h3>80%</h3><p>核心报表覆盖率提升</p></div>
-            <div class="stat-item"><h3>200+</h3><p>精准营销指标沉淀</p></div>
+            <div class="stat-item">
+                <h3>行业解决方案建设者</h3>
+            </div>
+            <div class="stat-item">
+                <h3>数据埋点专家</h3>
+            </div>
+            <div class="stat-item">
+                <h3>精准营销体系<br>沉淀专家</h3>
+            </div>
+            <div class="stat-item">
+                <h3>智能问数体系建设者</h3>
+            </div>
         </div>
     </section>
 
     <section class="services-section" id="services">
-        <div class="cursive-title">Core Competence</div>
+        <div class="cursive-title">Projects</div>
         <div class="section-header">
-            <h2>核心解决方案</h2>
+            <h2>精选项目案例</h2>
             <p>结合技术深度与业务广度，为您提供可落地的全链路数据服务</p>
         </div>
 
-        <!-- 项目 01 -->
+        <!-- 项目 01：凯叔 -->
         <div class="project-row">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="数据分析" class="project-image">
+            <img src="https://images.unsplash.com/photo-1503428593586-e225b39bddfe?q=80&w=2070&auto=format&fit=crop" alt="凯叔项目" class="project-image">
             <div class="project-content">
                 <div class="big-number">01</div>
-                <h3>数据体系 0→1 建设</h3>
+                <h3>凯叔大数据体系改造</h3>
                 <p>
-                    针对企业数据基础薄弱的痛点，提供从埋点采集、数仓建模到指标体系搭建的一站式方案。
-                    <br><br>
-                    <strong>案例：</strong> 为云器科技设计电商通用模型，支持多源数据接入，实现“开箱即用”。
+                    重构从数据采集、处理到应用的全链路数据体系。实现全业务场景埋点覆盖，重构10大核心报表，有效支撑精准营销。
                 </p>
                 <button class="btn-outline" onclick="openModal('project1Modal')">查看详情</button>
             </div>
         </div>
 
-        <!-- 项目 02 -->
+        <!-- 项目 02：云器 (反向布局) -->
         <div class="project-row reverse">
-            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop" alt="团队管理" class="project-image">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="云器项目" class="project-image">
             <div class="project-content">
                 <div class="big-number">02</div>
-                <h3>数据治理与重构</h3>
+                <h3>云器行业数据解决方案建设</h3>
                 <p>
-                    解决长期积累的“指标不一致、数据质量差、响应慢”问题。通过标准化与自动化，重建数据信任。
-                    <br><br>
-                    <strong>案例：</strong> 凯叔讲故事大数据体系改造，重构12大主题域，建立统一DQC体系。
+                    沉淀电商通用数据模型，支持多源接入，实现“开箱即用”。构建人货场分析框架，大幅降低客户使用门槛。
                 </p>
                 <button class="btn-outline" onclick="openModal('project2Modal')">查看详情</button>
             </div>
         </div>
 
-        <!-- 项目 03 -->
+        <!-- 项目 03：单创 (正向布局) -->
         <div class="project-row">
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" alt="业务增长" class="project-image">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" alt="单创项目" class="project-image">
             <div class="project-content">
                 <div class="big-number">03</div>
-                <h3>业务驱动与赋能</h3>
+                <h3>归一项目 (数仓升级重构)</h3>
                 <p>
-                    跳出技术视角，深入业务场景。构建“人货场”分析框架与标签体系，直接支持精准营销与策略复盘。
-                    <br><br>
-                    <strong>案例：</strong> 蘑菇街直播业务数据体系，打通人货场模型。
+                    统一数仓与建模规范，覆盖80%核心报表。引入DQC体系，关键链路出数时间大幅提前，重建数据信任。
                 </p>
                 <button class="btn-outline" onclick="openModal('project3Modal')">查看详情</button>
+            </div>
+        </div>
+
+        <!-- 项目 04：蘑菇街 (反向布局) -->
+        <div class="project-row reverse">
+            <img src="https://images.unsplash.com/photo-1512428559087-560fa9604a08?q=80&w=2070&auto=format&fit=crop" alt="蘑菇街项目" class="project-image">
+            <div class="project-content">
+                <div class="big-number">04</div>
+                <h3>蘑菇街流量数据体系建设</h3>
+                <p>
+                    统一多端埋点规范，搭建埋点管理平台。建设流量数仓，支撑全链路转化分析，显著提升数据一致性。
+                </p>
+                <button class="btn-outline" onclick="openModal('project4Modal')">查看详情</button>
             </div>
         </div>
     </section>
@@ -408,107 +455,202 @@
 
     <!-- ================= 弹窗 (Modal) ================= -->
 
+    <!-- 1. 完整履历弹窗 -->
     <div id="resumeModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('resumeModal')">&times;</span>
             <h2 class="modal-title">完整工作履历</h2>
+            
             <div class="timeline-item">
                 <div class="timeline-date">2024.10 - 至今</div>
-                <div class="timeline-role">资深数据工程师</div>
+                <div class="timeline-role">资深数据工程师 | 企业服务</div>
                 <span class="timeline-company">锐鲨科技有限公司</span>
-                <p>主导数据解决方案标准化，提升交付效率；深度对接核心客户（如凯叔讲故事），主导数据体系迁移与重构。</p>
+                <ul class="timeline-desc-list">
+                    <li><strong>对内建设：</strong>主导数据解决方案的方法论标准化（涵盖采集、建设、分析及AI应用等环节），以提升交付效率与资产复用性。</li>
+                    <li><strong>对外交付：</strong>作为资深数据工程专家，深度对接核心客户，主导其数据体系的迁移、重构与落地。</li>
+                </ul>
             </div>
+
             <div class="timeline-item">
                 <div class="timeline-date">2022.05 - 2024.06</div>
-                <div class="timeline-role">数据仓库组组长</div>
+                <div class="timeline-role">数据仓库组组长 | 企业服务</div>
                 <span class="timeline-company">杭州云之重器科技有限公司</span>
-                <p>从0-1搭建通用数据模型与指标体系，适配电商/软件/新能源等多行业；支持经营分析与元数据管理。</p>
+                <ul class="timeline-desc-list">
+                    <li><strong>对内建设：</strong>从 0–1 搭建数据埋点体系，元仓数据体系、指标体系，支持经营分析、数据资产管理、调度运维监控；帮助公司各层级提升决策、分析、产品运营、数据研发与运维效率；提升数据资产透明度 & 数据质量。</li>
+                    <li><strong>对外交付：</strong>研究多个行业（电商/软件服务/新能源/视频）的商业模式；设计行业适配的数据解决方案，输出数据模型体系、指标体系、标签体系、分析框架；配合中台 & CDP产品，端到端解决客户业务问题。</li>
+                </ul>
             </div>
+
             <div class="timeline-item">
                 <div class="timeline-date">2020.11 - 2022.05</div>
-                <div class="timeline-role">数据仓库 TL</div>
+                <div class="timeline-role">数据仓库 TL | 电子商务</div>
                 <span class="timeline-company">杭州单创品牌管理 (VTN)</span>
-                <p>管理数仓团队，主导离线数仓架构建设、数据治理及数据质量保障体系。</p>
+                <ul class="timeline-desc-list">
+                    <li>主导离线数仓架构建设、数据质量保障、数据治理。</li>
+                    <li>负责数仓方向技术调研与落地。</li>
+                    <li>管理数仓团队，明确职责定位，人才梯度培养。</li>
+                </ul>
             </div>
+
             <div class="timeline-item">
                 <div class="timeline-date">2015.08 - 2020.11</div>
-                <div class="timeline-role">资深数据仓库开发工程师</div>
+                <div class="timeline-role">资深数据仓库开发工程师 | 电子商务</div>
                 <span class="timeline-company">蘑菇街</span>
-                <p>主导流量与直播业务数据体系建设，负责埋点设计与实时/离线数仓建模。</p>
+                <ul class="timeline-desc-list">
+                    <li>深度参与离线&实时数据仓库建设、数据治理、数据质量体系建设。</li>
+                    <li>重点主导流量数据体系建设。</li>
+                    <li>主导直播业务的数据体系建设（数仓模型 + 数据产品）。</li>
+                    <li>参与技术方向调研与落地。</li>
+                </ul>
             </div>
+
             <div class="timeline-item">
-                <div class="timeline-date">早期经历 (2006 - 2015)</div>
-                <span class="timeline-company">淘宝 / 招商银行软件中心 / 杭州东忠科技</span>
-                <p>拥有淘宝全球购/天猫家装数据建设经验，及招行信用卡数仓建设经验。</p>
+                <div class="timeline-date">2014.10 - 2015.08</div>
+                <div class="timeline-role">资深数据仓库开发工程师</div>
+                <span class="timeline-company">淘宝</span>
+                <ul class="timeline-desc-list">
+                    <li>负责全球购、二手闲置、拍卖、天猫家装四大业务线数据建设。</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2009.12 - 2014.09</div>
+                <div class="timeline-role">数据仓库开发工程师</div>
+                <span class="timeline-company">招商银行软件中心</span>
+                <ul class="timeline-desc-list">
+                    <li>负责信用卡数据仓库建设；建信用卡作业部数据集市；保证线上数据质量。</li>
+                </ul>
             </div>
         </div>
     </div>
 
+    <!-- 项目1：凯叔 -->
     <div id="project1Modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('project1Modal')">&times;</span>
-            <h2 class="modal-title">行业数据解决方案建设 (0→1)</h2>
+            <h2 class="modal-title">凯叔大数据体系改造项目</h2>
+            
             <div class="modal-detail-section">
-                <h4>背景与痛点</h4>
-                <p>客户落地数据中台门槛高，数据引入困难，指标口径不清晰，难以沉淀画像与分析框架，导致“小白用户”难以快速产出价值。</p>
+                <h4>背景 (Background)</h4>
+                <p class="modal-text">客户原有数据体系化建设缺失，埋点与管理混乱，导致数据采集响应缓慢、分析成本高、技术与业务脱节，无法有效支撑数据驱动的业务决策。</p>
             </div>
             <div class="modal-detail-section">
-                <h4>解决方案</h4>
+                <h4>目标 (Objective)</h4>
+                <p class="modal-text">重构从数据采集、处理到应用的全链路数据体系，通过标准化与自动化，降低使用门槛，建立数据驱动的业务闭环，提升整体运营效率。</p>
+            </div>
+            <div class="modal-detail-section">
+                <h4>成果 (Results)</h4>
                 <ul class="modal-list">
-                    <li><strong>模型沉淀：</strong>基于行业经验沉淀“开箱即用”的通用模型，覆盖流量/交易/售后/评价等核心域。</li>
-                    <li><strong>多源接入：</strong>完成有赞/京东等多源数据标准化处理，实现统一模型融合。</li>
-                    <li><strong>分析框架：</strong>搭建“人货场”分析框架与系列看板，支持商品策略、活动复盘与渠道分析。</li>
+                    <li><strong>埋点体系重建：</strong>从0到1设计统一埋点采集规范，实现全业务场景覆盖，并建立可持续迭代机制，显著提升用户行为分析以及产品功能效果评估的覆盖广度与分析响应效率。</li>
+                    <li><strong>数仓与模型重构：</strong>基于业务特性重构数仓，划分12大主题域，完整覆盖用户全生命周期行为链路，为跨业务数据一致性分析与深度挖掘奠定坚实基础。</li>
+                    <li><strong>数据应用落地 - 报表体系：</strong>重构10大核心报表体系，支持外投增长、用户活跃与转化、会员深度分析、商品与内容表现、产品常规及活动复盘等多维度数据分析需求。</li>
+                    <li><strong>数据应用落地 - 标签体系：</strong>重构DMP平台5大标签体系，沉淀200+精准指标，覆盖用户全链路行为，有效支撑精准营销与精细化运营策略，驱动业务增长。</li>
                 </ul>
-            </div>
-            <div class="modal-detail-section">
-                <h4>最终成果</h4>
-                <p>客户无需从零搭建体系，即可直接进入分析与运营阶段，极大地缩短了数据价值变现周期。</p>
             </div>
         </div>
     </div>
 
+    <!-- 项目2：云器 -->
     <div id="project2Modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('project2Modal')">&times;</span>
-            <h2 class="modal-title">凯叔大数据体系改造项目</h2>
+            <h2 class="modal-title">云器行业数据解决方案建设 (0→1)</h2>
+            
             <div class="modal-detail-section">
-                <h4>背景与痛点</h4>
-                <p>原有数据体系建设缺失，埋点混乱，导致分析成本高、技术与业务脱节，无法支撑数据驱动决策。</p>
+                <h4>背景 (Background)</h4>
+                <p class="modal-text">客户从 0 落地数据中台门槛高：数据引入困难、建模成本高、指标不清、难沉淀画像与分析框架，导致“小白用户”难以快速产出价值。</p>
             </div>
             <div class="modal-detail-section">
-                <h4>关键行动</h4>
+                <h4>目标 (Objective)</h4>
                 <ul class="modal-list">
-                    <li><strong>埋点重构：</strong>从0到1设计统一埋点规范，实现全业务场景覆盖。</li>
-                    <li><strong>数仓重构：</strong>基于业务特性划分12大主题域，完整覆盖用户全生命周期行为链路。</li>
-                    <li><strong>数据应用：</strong>重构10大核心报表体系与DMP平台5大标签体系，沉淀200+精准指标。</li>
+                    <li>基于行业经验沉淀模型，实现“开箱即用”。</li>
+                    <li>支持有赞/京东等多源数据接入。</li>
+                    <li>构建统一业务模型、指标体系、用户标签体系。</li>
+                    <li>提供可直接使用的分析看板与框架。</li>
                 </ul>
             </div>
             <div class="modal-detail-section">
-                <h4>最终成果</h4>
-                <p>实现了全链路行为覆盖，有效支撑了精准营销与精细化运营策略，显著提升了分析响应效率。</p>
+                <h4>成果 (Results)</h4>
+                <ul class="modal-list">
+                    <li>设计并落地电商通用模型，覆盖流量 / 交易 / 售后 / 评价 / 活动 / 商品 / 用户等核心域。</li>
+                    <li>完成多源数据标准化处理，使数据能在统一模型下融合使用。</li>
+                    <li>构建用户行为标签体系，覆盖访问、交易、活动、评价等行为。</li>
+                    <li>搭建“人货场”分析框架 & 系列看板，支持用户分析、商品策略、活动复盘、渠道分析。</li>
+                    <li>客户无需从零搭建体系，即可直接进入分析与运营阶段。</li>
+                </ul>
+            </div>
+            <div class="modal-detail-section">
+                <h4>职责 (Responsibilities)</h4>
+                <p class="modal-text">担任 PM，输出埋点采集方案、建模方案、指标体系、标签体系、分析框架；推动数据采集、建模、加工、应用落地；负责数据产出准确性、稳定性，支持客户使用；与产品、客户深度沟通需求，推动方案迭代。</p>
             </div>
         </div>
     </div>
 
+    <!-- 项目3：单创归一 -->
     <div id="project3Modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('project3Modal')">&times;</span>
-            <h2 class="modal-title">直播数据体系建设 (蘑菇街)</h2>
+            <h2 class="modal-title">归一项目 (数据仓库升级重构)</h2>
+            
             <div class="modal-detail-section">
-                <h4>背景与痛点</h4>
-                <p>直播作为战略方向缺乏系统化数据支撑，运营无法有效进行监控、复盘和策略优化。</p>
+                <h4>背景 (Background)</h4>
+                <p class="modal-text">公司长期以“需求驱动、点对点开发”为主，造成资源浪费、指标不一致、数据质量差、更新慢，难以支持增长。</p>
             </div>
             <div class="modal-detail-section">
-                <h4>解决方案</h4>
+                <h4>目标 (Objective)</h4>
                 <ul class="modal-list">
-                    <li><strong>数据集市：</strong>构建直播核心业务数据模型（实时+离线），覆盖曝光→观看→互动→成交全链路。</li>
-                    <li><strong>画像体系：</strong>构建用户画像和主播画像体系，用于人群匹配与运营。</li>
-                    <li><strong>方法论沉淀：</strong>沉淀“开播前触达 → 开播中监控 → 开播后复盘”的分析框架。</li>
+                    <li>建统一数仓，统一建模规范；全量场景落地 DWD / DWS。</li>
+                    <li>保障质量 & 交付效率；关键链路出数从 10 点 → 8 点。</li>
                 </ul>
             </div>
             <div class="modal-detail-section">
-                <h4>最终成果</h4>
-                <p>打通了“人货场”数据，支撑运营对直播策略、排期、品类及主播组合进行科学评估与优化。</p>
+                <h4>成果 (Results)</h4>
+                <ul class="modal-list">
+                    <li>输出《数仓建模指南》《DQC方案》《指标体系规范》。</li>
+                    <li>建 8 大业务域 / 40+ DWD / 30+ DWS → 覆盖 80%核心报表。</li>
+                    <li>打通业务：财务 / 经销商运营 / 风控。</li>
+                    <li>构建标签体系（用户/经销商），支持画像系统。</li>
+                    <li>完整 DQC 体系 + 事故复盘流程 → 准确率 & 及时性显著提升。</li>
+                </ul>
+            </div>
+            <div class="modal-detail-section">
+                <h4>职责 (Responsibilities)</h4>
+                <p class="modal-text">PM + 技术 Owner；制定建模规范 & 开发流程；主导模型落地、指标标准化；推进 DQC 上线与运营。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 项目4：蘑菇街流量 -->
+    <div id="project4Modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('project4Modal')">&times;</span>
+            <h2 class="modal-title">流量数据体系建设 (蘑菇街)</h2>
+            
+            <div class="modal-detail-section">
+                <h4>背景 (Background)</h4>
+                <p class="modal-text">多端埋点规范不统一、缺失严重、统计困难，导致数据可用性差，无法有效支持渠道投放评估与用户行为链路分析。</p>
+            </div>
+            <div class="modal-detail-section">
+                <h4>目标 (Objective)</h4>
+                <ul class="modal-list">
+                    <li>推动统一埋点方案（通用+关键业务）。</li>
+                    <li>建立埋点管理平台，实现全流程管理。</li>
+                    <li>建设流量数据仓库，支撑行为与转化分析。</li>
+                </ul>
+            </div>
+            <div class="modal-detail-section">
+                <h4>成果 (Results)</h4>
+                <ul class="modal-list">
+                    <li>制定统一埋点规范（事件 / 属性 / 命名 / 链路），覆盖多端。</li>
+                    <li>落地埋点管理平台，实现“埋点需求 → 开发 → 测试 → 上线 → 校验”完整流程。</li>
+                    <li>建立流量数据仓库，覆盖曝光、点击、行为链路、转化、成交。</li>
+                    <li>为用户行为分析、渠道评估、漏斗分析提供基础支撑。</li>
+                    <li>数据标准化后，埋点质量更稳定，业务分析效率提升。</li>
+                </ul>
+            </div>
+            <div class="modal-detail-section">
+                <h4>职责 (Responsibilities)</h4>
+                <p class="modal-text">主导统一埋点规范落地；参与埋点管理平台规划与落地；负责 DWD/DWS 建模，输出指标体系；与客户端、后端、产品合作推动埋点实施；管理数据质量，提升数据一致性与可用性。</p>
             </div>
         </div>
     </div>
@@ -530,13 +672,12 @@
             }
         }
 
-        // === 新增：点击上传预览图片的逻辑 ===
+        // 点击上传图片逻辑 (可选)
         function loadImage(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     document.getElementById('myArchImage').style.backgroundImage = "url('" + e.target.result + "')";
-                    // 隐藏提示文字
                     document.querySelector('.upload-hint').style.display = 'none';
                 }
                 reader.readAsDataURL(input.files[0]);
