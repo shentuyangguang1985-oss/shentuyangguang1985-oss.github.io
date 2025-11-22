@@ -17,7 +17,7 @@
             --soft-beige: #f5efeb;
             --text-main: #2c2c2c;
             --white: #ffffff;
-            --modal-bg: rgba(0, 0, 0, 0.6);
+            --modal-bg: rgba(0, 0, 0, 0.7);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,7 +32,7 @@
 
         h1, h2, h3, h4, .serif-font { font-family: 'Noto Serif SC', serif; }
         a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer;}
-        ul { list-style: none; }
+        button { font-family: 'Noto Sans SC', sans-serif; cursor: pointer; }
 
         /* --- 导航栏 --- */
         nav {
@@ -67,6 +67,7 @@
             color: var(--white);
             padding: 10px 25px;
             font-size: 0.85rem;
+            border-radius: 2px;
         }
 
         /* --- Hero 区域 --- */
@@ -129,18 +130,39 @@
         .intro-text h2 { font-size: 2.5rem; margin-bottom: 30px; color: var(--warm-brown); }
         .intro-text p { margin-bottom: 20px; color: #555; text-align: justify; }
         
-        /* 关键修改：您的个人照片样式 */
+        /* === 修复版图片样式 === */
+        .arch-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 600px;
+        }
         .arch-image {
             width: 100%;
-            height: 600px; /* 稍微加高以适配竖版照片 */
-            /* 这里引用您的本地照片 profile.jpg */
+            height: 100%;
+            
+            /* 默认尝试加载 profile.jpg */
             background-image: url('./profile.jpg'); 
+            
             background-size: cover;
-            background-position: center top;
-            border-radius: 300px 300px 0 0; /* 保持拱形 */
+            background-position: center top; 
+            border-radius: 300px 300px 0 0;
             box-shadow: 20px 20px 0px rgba(255,255,255,0.5);
-            /* 如果本地还没有图片，显示灰色背景作为占位 */
-            background-color: #ccc; 
+            background-color: #cccccc; /* 加载失败时的底色 */
+            cursor: pointer; /* 鼠标变成手型，提示可点击 */
+            transition: 0.3s;
+        }
+        .arch-image:hover {
+            opacity: 0.9;
+        }
+        /* 提示文字 */
+        .upload-hint {
+            position: absolute;
+            bottom: 20px; left: 0; right: 0;
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.8rem;
+            pointer-events: none;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         .btn-dark {
@@ -151,7 +173,7 @@
             margin-top: 20px;
             font-size: 0.9rem;
             border: none;
-            cursor: pointer;
+            transition: 0.3s;
         }
         .btn-dark:hover { background-color: #15382f; }
 
@@ -197,7 +219,7 @@
         .btn-outline {
             border: 1px solid var(--text-main); padding: 12px 30px;
             display: inline-block; text-transform: uppercase; font-size: 0.8rem;
-            letter-spacing: 1px; width: fit-content; background: transparent; cursor: pointer;
+            letter-spacing: 1px; width: fit-content; background: transparent; transition: 0.3s;
         }
         .btn-outline:hover { background: var(--text-main); color: var(--white); }
 
@@ -210,37 +232,32 @@
         footer { background-color: var(--white); padding: 50px 20px; text-align: center; border-top: 1px solid #eee; }
         .footer-info { font-size: 0.8rem; color: #999; }
 
-        /* --- 弹窗 (Modal) 样式 --- */
+        /* --- 弹窗 (Modal) --- */
         .modal {
-            display: none; /* 默认隐藏 */
-            position: fixed; z-index: 1000; left: 0; top: 0;
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
             width: 100%; height: 100%; overflow: auto;
-            background-color: var(--modal-bg);
-            backdrop-filter: blur(5px);
+            background-color: var(--modal-bg); backdrop-filter: blur(5px);
             animation: fadeIn 0.3s;
         }
         .modal-content {
-            background-color: var(--white);
-            margin: 5% auto; padding: 40px;
+            background-color: var(--white); margin: 5% auto; padding: 40px;
             border: 1px solid #888; width: 80%; max-width: 800px;
-            position: relative; border-radius: 8px;
+            position: relative; border-radius: 4px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         .close-btn {
-            color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;
+            color: #aaa; float: right; font-size: 32px; font-weight: bold; cursor: pointer; line-height: 20px;
         }
-        .close-btn:hover { color: #000; }
-        
-        /* 弹窗内容样式 */
-        .modal-title { font-family: 'Noto Serif SC'; font-size: 2rem; color: var(--dark-green); margin-bottom: 20px; border-bottom: 2px solid var(--soft-beige); padding-bottom: 10px; }
-        .timeline-item { margin-bottom: 25px; padding-left: 20px; border-left: 3px solid var(--warm-brown); }
-        .timeline-date { color: #888; font-size: 0.9rem; margin-bottom: 5px; }
+        .close-btn:hover { color: var(--dark-green); }
+        .modal-title { font-family: 'Noto Serif SC'; font-size: 1.8rem; color: var(--dark-green); margin-bottom: 25px; border-bottom: 2px solid var(--soft-beige); padding-bottom: 15px; }
+        .timeline-item { margin-bottom: 30px; padding-left: 20px; border-left: 3px solid var(--warm-brown); }
+        .timeline-date { color: #999; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; }
         .timeline-role { font-size: 1.2rem; font-weight: bold; color: var(--text-main); }
-        .timeline-company { color: var(--dark-green); font-weight: bold; }
-        .modal-detail-section { margin-bottom: 20px; }
-        .modal-detail-section h4 { color: var(--warm-brown); margin-bottom: 8px; }
-        .modal-list li { list-style-type: disc; margin-left: 20px; margin-bottom: 5px; color: #555; }
-
+        .timeline-company { color: var(--dark-green); font-weight: bold; margin-bottom: 8px; display: block;}
+        .modal-detail-section { margin-bottom: 25px; }
+        .modal-detail-section h4 { color: var(--warm-brown); margin-bottom: 10px; font-size: 1.1rem; border-left: 4px solid var(--dark-green); padding-left: 10px; }
+        .modal-list { padding-left: 20px; }
+        .modal-list li { list-style-type: disc; margin-bottom: 8px; color: #555; }
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
         /* --- 响应式 --- */
@@ -249,13 +266,13 @@
             header::before { width: 100%; height: 50%; }
             .header-content { margin-left: 0; max-width: 100%; padding: 40px 20px; margin-top: 40vh; }
             .intro-container, .project-row { grid-template-columns: 1fr; }
-            .arch-image { height: 400px; }
+            .arch-image-wrapper { height: 400px; }
             .stats-grid { flex-direction: column; gap: 30px; }
             .project-row.reverse { direction: ltr; }
             .project-content { padding: 40px 20px; }
             .insta-grid { grid-template-columns: repeat(2, 1fr); }
             .nav-inner { flex-direction: column; gap: 15px; }
-            .modal-content { width: 95%; margin: 10% auto; padding: 20px; }
+            .modal-content { width: 95%; margin: 15% auto; padding: 25px; }
         }
     </style>
 </head>
@@ -297,11 +314,17 @@
                 <p>
                     我不止写代码，我更关注如何让数据“好用”。无论是重构凯叔讲故事的全链路数据体系，还是为电商行业打造通用的数据中台模型，我的目标始终一致：**降低门槛，提升效率**。
                 </p>
-                <!-- 按钮触发履历弹窗 -->
                 <button class="btn-dark" onclick="openModal('resumeModal')">查看完整履历</button>
             </div>
-            <!-- 拱形图片：已更新 CSS 指向本地图片 -->
-            <div class="arch-image"></div>
+            
+            <!-- 图片区域：增加了点击上传功能 -->
+            <div class="arch-image-wrapper">
+                <div class="arch-image" id="myArchImage" onclick="document.getElementById('fileInput').click()"></div>
+                <div class="upload-hint">如果照片未显示，请点击这里选择照片</div>
+            </div>
+            <!-- 隐藏的文件上传控件 -->
+            <input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="loadImage(this)">
+
         </div>
     </section>
 
@@ -315,8 +338,7 @@
     </section>
 
     <section class="services-section" id="services">
-        <div class="cursive-title">My Expertise</div>
-        
+        <div class="cursive-title">Core Competence</div>
         <div class="section-header">
             <h2>核心解决方案</h2>
             <p>结合技术深度与业务广度，为您提供可落地的全链路数据服务</p>
@@ -384,51 +406,44 @@
         <div class="footer-info">版权所有 &copy; 2025 申屠阳光. 保留所有权利.</div>
     </footer>
 
-    <!-- ================= 弹窗内容区域 ================= -->
+    <!-- ================= 弹窗 (Modal) ================= -->
 
-    <!-- 1. 完整履历弹窗 -->
     <div id="resumeModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('resumeModal')">&times;</span>
             <h2 class="modal-title">完整工作履历</h2>
-            
             <div class="timeline-item">
                 <div class="timeline-date">2024.10 - 至今</div>
                 <div class="timeline-role">资深数据工程师</div>
-                <div class="timeline-company">锐鲨科技有限公司</div>
+                <span class="timeline-company">锐鲨科技有限公司</span>
                 <p>主导数据解决方案标准化，提升交付效率；深度对接核心客户（如凯叔讲故事），主导数据体系迁移与重构。</p>
             </div>
-
             <div class="timeline-item">
                 <div class="timeline-date">2022.05 - 2024.06</div>
                 <div class="timeline-role">数据仓库组组长</div>
-                <div class="timeline-company">杭州云之重器科技有限公司</div>
+                <span class="timeline-company">杭州云之重器科技有限公司</span>
                 <p>从0-1搭建通用数据模型与指标体系，适配电商/软件/新能源等多行业；支持经营分析与元数据管理。</p>
             </div>
-
             <div class="timeline-item">
                 <div class="timeline-date">2020.11 - 2022.05</div>
                 <div class="timeline-role">数据仓库 TL</div>
-                <div class="timeline-company">杭州单创品牌管理 (VTN)</div>
+                <span class="timeline-company">杭州单创品牌管理 (VTN)</span>
                 <p>管理数仓团队，主导离线数仓架构建设、数据治理及数据质量保障体系。</p>
             </div>
-
             <div class="timeline-item">
                 <div class="timeline-date">2015.08 - 2020.11</div>
                 <div class="timeline-role">资深数据仓库开发工程师</div>
-                <div class="timeline-company">蘑菇街</div>
+                <span class="timeline-company">蘑菇街</span>
                 <p>主导流量与直播业务数据体系建设，负责埋点设计与实时/离线数仓建模。</p>
             </div>
-
             <div class="timeline-item">
                 <div class="timeline-date">早期经历 (2006 - 2015)</div>
-                <div class="timeline-company">淘宝 / 招商银行软件中心 / 杭州东忠科技</div>
+                <span class="timeline-company">淘宝 / 招商银行软件中心 / 杭州东忠科技</span>
                 <p>拥有淘宝全球购/天猫家装数据建设经验，及招行信用卡数仓建设经验。</p>
             </div>
         </div>
     </div>
 
-    <!-- 2. 项目详情弹窗：数据体系 0-1 -->
     <div id="project1Modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('project1Modal')">&times;</span>
@@ -452,7 +467,6 @@
         </div>
     </div>
 
-    <!-- 3. 项目详情弹窗：数据治理 -->
     <div id="project2Modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('project2Modal')">&times;</span>
@@ -476,7 +490,6 @@
         </div>
     </div>
 
-    <!-- 4. 项目详情弹窗：业务驱动 -->
     <div id="project3Modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('project3Modal')">&times;</span>
@@ -500,25 +513,33 @@
         </div>
     </div>
 
-    <!-- JavaScript 控制脚本 -->
+    <!-- JavaScript -->
     <script>
-        // 打开弹窗
         function openModal(modalId) {
             document.getElementById(modalId).style.display = "block";
-            document.body.style.overflow = "hidden"; // 禁止背景滚动
+            document.body.style.overflow = "hidden";
         }
-
-        // 关闭弹窗
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = "none";
-            document.body.style.overflow = "auto"; // 恢复背景滚动
+            document.body.style.overflow = "auto";
         }
-
-        // 点击弹窗外部空白处关闭
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = "none";
                 document.body.style.overflow = "auto";
+            }
+        }
+
+        // === 新增：点击上传预览图片的逻辑 ===
+        function loadImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('myArchImage').style.backgroundImage = "url('" + e.target.result + "')";
+                    // 隐藏提示文字
+                    document.querySelector('.upload-hint').style.display = 'none';
+                }
+                reader.readAsDataURL(input.files[0]);
             }
         }
     </script>
