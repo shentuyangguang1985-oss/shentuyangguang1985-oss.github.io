@@ -5,27 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>申屠阳光 | 资深数据仓库专家</title>
     
-    <!-- 引入中文字体：思源宋体(标题) 和 思源黑体(正文) -->
+    <!-- 引入中文字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* 核心配色方案 - 复刻参考图 */
-            --dark-green: #1e4d40;   /* 墨绿色 - 用于重点区域 */
-            --warm-brown: #a67b5b;   /* 暖棕色 - 用于Hero区域背景 */
-            --soft-beige: #f5efeb;   /* 浅米粉 - 用于背景 */
-            --text-main: #2c2c2c;    /* 深灰 - 正文 */
+            --dark-green: #1e4d40;
+            --warm-brown: #a67b5b;
+            --soft-beige: #f5efeb;
+            --text-main: #2c2c2c;
             --white: #ffffff;
-            --accent-gold: #c6a88f;
+            --modal-bg: rgba(0, 0, 0, 0.6);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Noto Sans SC', sans-serif;
@@ -35,14 +30,11 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, .serif-font {
-            font-family: 'Noto Serif SC', serif; /* 宋体，营造高级感 */
-        }
-
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        h1, h2, h3, h4, .serif-font { font-family: 'Noto Serif SC', serif; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer;}
         ul { list-style: none; }
 
-        /* 导航栏 */
+        /* --- 导航栏 --- */
         nav {
             padding: 20px 40px;
             display: flex;
@@ -54,7 +46,6 @@
             z-index: 100;
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-
         .nav-inner {
             display: flex;
             justify-content: space-between;
@@ -62,7 +53,6 @@
             width: 100%;
             max-width: 1200px;
         }
-
         .logo {
             font-family: 'Noto Serif SC', serif;
             font-size: 1.5rem;
@@ -71,13 +61,7 @@
             color: var(--text-main);
             text-transform: uppercase;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            font-size: 0.9rem;
-        }
-
+        .nav-links { display: flex; gap: 30px; font-size: 0.9rem; }
         .nav-btn {
             background-color: var(--dark-green);
             color: var(--white);
@@ -85,7 +69,7 @@
             font-size: 0.85rem;
         }
 
-        /* Hero 区域 - 棕色背景大图风格 */
+        /* --- Hero 区域 --- */
         header {
             position: relative;
             min-height: 85vh;
@@ -95,53 +79,29 @@
             justify-content: center;
             overflow: hidden;
         }
-
-        /* 模拟参考图的背景图层 */
         header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 50%; /* 左半边是图片 */
+            top: 0; left: 0;
+            width: 50%;
             height: 100%;
             background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             opacity: 0.9;
         }
-
         .header-content {
             position: relative;
             z-index: 2;
-            background-color: rgba(166, 123, 91, 0.95); /* 棕色半透明遮罩 */
+            background-color: rgba(166, 123, 91, 0.95);
             padding: 60px;
             max-width: 600px;
-            margin-left: 30%; /* 偏移布局 */
+            margin-left: 30%;
             color: var(--white);
             box-shadow: -20px 20px 60px rgba(0,0,0,0.2);
         }
-
-        .header-subtitle {
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            line-height: 1.3;
-            margin-bottom: 30px;
-            font-weight: 400;
-        }
-
-        header p {
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
+        .header-subtitle { font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; opacity: 0.9; }
+        header h1 { font-size: 3rem; line-height: 1.3; margin-bottom: 30px; font-weight: 400; }
         .btn-white {
             display: inline-block;
             background-color: var(--white);
@@ -150,20 +110,15 @@
             font-weight: 700;
             letter-spacing: 1px;
         }
+        .btn-white:hover { background-color: var(--dark-green); color: var(--white); }
 
-        .btn-white:hover {
-            background-color: var(--dark-green);
-            color: var(--white);
-        }
-
-        /* 个人简介区 - 米色背景 + 拱形图 */
+        /* --- 个人简介区 --- */
         .intro-section {
             background-color: var(--soft-beige);
             padding: 100px 20px;
             display: flex;
             justify-content: center;
         }
-
         .intro-container {
             max-width: 1100px;
             display: grid;
@@ -171,28 +126,21 @@
             gap: 80px;
             align-items: center;
         }
-
-        .intro-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: var(--warm-brown);
-        }
-
-        .intro-text p {
-            margin-bottom: 20px;
-            color: #555;
-            text-align: justify;
-        }
-
-        /* 拱形图片裁剪 */
+        .intro-text h2 { font-size: 2.5rem; margin-bottom: 30px; color: var(--warm-brown); }
+        .intro-text p { margin-bottom: 20px; color: #555; text-align: justify; }
+        
+        /* 关键修改：您的个人照片样式 */
         .arch-image {
             width: 100%;
-            height: 500px;
-            background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1887&auto=format&fit=crop');
+            height: 600px; /* 稍微加高以适配竖版照片 */
+            /* 这里引用您的本地照片 profile.jpg */
+            background-image: url('./profile.jpg'); 
             background-size: cover;
             background-position: center top;
-            border-radius: 250px 250px 0 0; /* 顶部圆拱 */
+            border-radius: 300px 300px 0 0; /* 保持拱形 */
             box-shadow: 20px 20px 0px rgba(255,255,255,0.5);
+            /* 如果本地还没有图片，显示灰色背景作为占位 */
+            background-color: #ccc; 
         }
 
         .btn-dark {
@@ -202,201 +150,117 @@
             padding: 15px 40px;
             margin-top: 20px;
             font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
         }
+        .btn-dark:hover { background-color: #15382f; }
 
-        /* 数据统计栏 - 墨绿色横条 */
-        .stats-bar {
-            background-color: var(--dark-green);
-            color: var(--white);
-            padding: 60px 20px;
-        }
-
+        /* --- 数据统计栏 --- */
+        .stats-bar { background-color: var(--dark-green); color: var(--white); padding: 60px 20px; }
         .stats-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-around;
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-around;
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.2);
             border-bottom: 1px solid rgba(255,255,255,0.2);
             padding: 20px 0;
         }
+        .stat-item h3 { font-size: 3rem; font-weight: 400; margin-bottom: 5px; }
+        .stat-item p { font-size: 0.9rem; letter-spacing: 1px; opacity: 0.8; text-transform: uppercase; }
 
-        .stat-item h3 {
-            font-size: 3rem;
-            font-weight: 400;
-            margin-bottom: 5px;
-        }
-
-        .stat-item p {
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            opacity: 0.8;
-            text-transform: uppercase;
-        }
-
-        /* 服务/项目板块 - 01, 02 布局 */
-        .services-section {
-            padding: 100px 20px;
-            background: var(--white);
-            position: relative;
-        }
-
-        /* 装饰性手写字 */
+        /* --- 服务/项目板块 --- */
+        .services-section { padding: 100px 20px; background: var(--white); position: relative; }
         .cursive-title {
-            text-align: center;
-            font-family: "Brush Script MT", cursive; /* 模拟手写体 */
-            font-size: 4rem;
-            color: rgba(0,0,0,0.05);
-            position: absolute;
-            top: 20px;
-            width: 100%;
-            z-index: 0;
+            text-align: center; font-family: "Brush Script MT", cursive;
+            font-size: 4rem; color: rgba(0,0,0,0.05);
+            position: absolute; top: 20px; width: 100%; z-index: 0;
         }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--text-main);
-            margin-bottom: 20px;
-        }
-
-        .section-header p {
-            max-width: 600px;
-            margin: 0 auto;
-            color: #666;
-        }
-
-        /* 交替布局项目 */
+        .section-header { text-align: center; margin-bottom: 80px; position: relative; z-index: 1; }
+        .section-header h2 { font-size: 2.5rem; color: var(--text-main); margin-bottom: 20px; }
+        
         .project-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            max-width: 1100px;
-            margin: 0 auto 100px auto;
-            align-items: center;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+            max-width: 1100px; margin: 0 auto 100px auto; align-items: center;
         }
-
-        .project-row.reverse {
-            direction: rtl; /* 用于反转图片和文字顺序 */
-        }
-
-        .project-row.reverse .project-content {
-            direction: ltr; /* 文字恢复正常方向 */
-            padding-left: 0;
-            padding-right: 60px;
-        }
-
-        .project-image {
-            height: 500px;
-            width: 100%;
-            object-fit: cover;
-        }
-
+        .project-row.reverse { direction: rtl; }
+        .project-row.reverse .project-content { direction: ltr; padding-left: 0; padding-right: 60px; }
+        .project-image { height: 500px; width: 100%; object-fit: cover; }
         .project-content {
-            padding: 60px;
-            background-color: var(--soft-beige); /* 每一块文字都有背景 */
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            padding: 60px; background-color: var(--soft-beige);
+            height: 100%; display: flex; flex-direction: column; justify-content: center;
         }
-
         .big-number {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 4rem;
-            color: var(--text-main);
-            opacity: 0.1;
-            line-height: 1;
-            margin-bottom: -20px;
+            font-family: 'Noto Serif SC', serif; font-size: 4rem;
+            color: var(--text-main); opacity: 0.1; line-height: 1; margin-bottom: -20px;
         }
-
-        .project-content h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--text-main);
-        }
-
-        .project-content p {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-        }
-
+        .project-content h3 { font-size: 2rem; margin-bottom: 20px; color: var(--text-main); }
         .btn-outline {
-            border: 1px solid var(--text-main);
-            padding: 12px 30px;
-            display: inline-block;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            width: fit-content;
+            border: 1px solid var(--text-main); padding: 12px 30px;
+            display: inline-block; text-transform: uppercase; font-size: 0.8rem;
+            letter-spacing: 1px; width: fit-content; background: transparent; cursor: pointer;
         }
+        .btn-outline:hover { background: var(--text-main); color: var(--white); }
 
-        .btn-outline:hover {
-            background: var(--text-main);
-            color: var(--white);
-        }
-
-        /* 底部图片网格 */
-        .insta-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-            padding: 5px;
-        }
-
-        .insta-img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: opacity 0.3s;
-        }
-
+        /* --- 底部图片网格 --- */
+        .insta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; padding: 5px; }
+        .insta-img { width: 100%; height: 300px; object-fit: cover; transition: opacity 0.3s; }
         .insta-img:hover { opacity: 0.8; }
 
-        /* Footer */
-        footer {
+        /* --- Footer --- */
+        footer { background-color: var(--white); padding: 50px 20px; text-align: center; border-top: 1px solid #eee; }
+        .footer-info { font-size: 0.8rem; color: #999; }
+
+        /* --- 弹窗 (Modal) 样式 --- */
+        .modal {
+            display: none; /* 默认隐藏 */
+            position: fixed; z-index: 1000; left: 0; top: 0;
+            width: 100%; height: 100%; overflow: auto;
+            background-color: var(--modal-bg);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s;
+        }
+        .modal-content {
             background-color: var(--white);
-            padding: 50px 20px;
-            text-align: center;
-            border-top: 1px solid #eee;
+            margin: 5% auto; padding: 40px;
+            border: 1px solid #888; width: 80%; max-width: 800px;
+            position: relative; border-radius: 8px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
-
-        .footer-social {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
+        .close-btn {
+            color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;
         }
+        .close-btn:hover { color: #000; }
         
-        .footer-info {
-            font-size: 0.8rem;
-            color: #999;
-        }
+        /* 弹窗内容样式 */
+        .modal-title { font-family: 'Noto Serif SC'; font-size: 2rem; color: var(--dark-green); margin-bottom: 20px; border-bottom: 2px solid var(--soft-beige); padding-bottom: 10px; }
+        .timeline-item { margin-bottom: 25px; padding-left: 20px; border-left: 3px solid var(--warm-brown); }
+        .timeline-date { color: #888; font-size: 0.9rem; margin-bottom: 5px; }
+        .timeline-role { font-size: 1.2rem; font-weight: bold; color: var(--text-main); }
+        .timeline-company { color: var(--dark-green); font-weight: bold; }
+        .modal-detail-section { margin-bottom: 20px; }
+        .modal-detail-section h4 { color: var(--warm-brown); margin-bottom: 8px; }
+        .modal-list li { list-style-type: disc; margin-left: 20px; margin-bottom: 5px; color: #555; }
 
-        /* 响应式 */
+        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+
+        /* --- 响应式 --- */
         @media (max-width: 768px) {
             header { display: block; }
             header::before { width: 100%; height: 50%; }
             .header-content { margin-left: 0; max-width: 100%; padding: 40px 20px; margin-top: 40vh; }
             .intro-container, .project-row { grid-template-columns: 1fr; }
-            .arch-image { height: 350px; }
+            .arch-image { height: 400px; }
             .stats-grid { flex-direction: column; gap: 30px; }
             .project-row.reverse { direction: ltr; }
             .project-content { padding: 40px 20px; }
             .insta-grid { grid-template-columns: repeat(2, 1fr); }
             .nav-inner { flex-direction: column; gap: 15px; }
+            .modal-content { width: 95%; margin: 10% auto; padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 导航栏 -->
     <nav>
         <div class="nav-inner">
             <div class="logo">申屠阳光</div>
@@ -409,7 +273,6 @@
         </div>
     </nav>
 
-    <!-- 头部 Hero (复刻棕色+文字遮罩) -->
     <header>
         <div class="header-content">
             <div class="header-subtitle">18年数据行业实战专家</div>
@@ -422,7 +285,7 @@
         </div>
     </header>
 
-    <!-- 个人简介 (复刻米色背景+拱形图) -->
+    <!-- 个人简介 -->
     <section class="intro-section" id="about">
         <div class="intro-container">
             <div class="intro-text">
@@ -434,38 +297,25 @@
                 <p>
                     我不止写代码，我更关注如何让数据“好用”。无论是重构凯叔讲故事的全链路数据体系，还是为电商行业打造通用的数据中台模型，我的目标始终一致：**降低门槛，提升效率**。
                 </p>
-                <a href="#contact" class="btn-dark">查看完整履历</a>
+                <!-- 按钮触发履历弹窗 -->
+                <button class="btn-dark" onclick="openModal('resumeModal')">查看完整履历</button>
             </div>
-            <!-- 拱形图片 -->
+            <!-- 拱形图片：已更新 CSS 指向本地图片 -->
             <div class="arch-image"></div>
         </div>
     </section>
 
-    <!-- 数据统计条 (墨绿色背景) -->
     <section class="stats-bar">
         <div class="stats-grid">
-            <div class="stat-item">
-                <h3>18+</h3>
-                <p>年数据从业经验</p>
-            </div>
-            <div class="stat-item">
-                <h3>12+</h3>
-                <p>业务领域覆盖</p>
-            </div>
-            <div class="stat-item">
-                <h3>80%</h3>
-                <p>核心报表覆盖率提升</p>
-            </div>
-            <div class="stat-item">
-                <h3>200+</h3>
-                <p>精准营销指标沉淀</p>
-            </div>
+            <div class="stat-item"><h3>18+</h3><p>年数据从业经验</p></div>
+            <div class="stat-item"><h3>12+</h3><p>业务领域覆盖</p></div>
+            <div class="stat-item"><h3>80%</h3><p>核心报表覆盖率提升</p></div>
+            <div class="stat-item"><h3>200+</h3><p>精准营销指标沉淀</p></div>
         </div>
     </section>
 
-    <!-- 服务/项目板块 (01, 02 交替布局) -->
     <section class="services-section" id="services">
-        <div class="cursive-title">My Expertise</div> <!-- 装饰性背景字 -->
+        <div class="cursive-title">My Expertise</div>
         
         <div class="section-header">
             <h2>核心解决方案</h2>
@@ -481,13 +331,13 @@
                 <p>
                     针对企业数据基础薄弱的痛点，提供从埋点采集、数仓建模到指标体系搭建的一站式方案。
                     <br><br>
-                    <strong>案例：</strong> 为云器科技设计电商通用模型，支持多源数据接入，实现“开箱即用”，让客户直接进入分析与运营阶段。
+                    <strong>案例：</strong> 为云器科技设计电商通用模型，支持多源数据接入，实现“开箱即用”。
                 </p>
-                <a href="#" class="btn-outline">查看详情</a>
+                <button class="btn-outline" onclick="openModal('project1Modal')">查看详情</button>
             </div>
         </div>
 
-        <!-- 项目 02 (反向) -->
+        <!-- 项目 02 -->
         <div class="project-row reverse">
             <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop" alt="团队管理" class="project-image">
             <div class="project-content">
@@ -496,9 +346,9 @@
                 <p>
                     解决长期积累的“指标不一致、数据质量差、响应慢”问题。通过标准化与自动化，重建数据信任。
                     <br><br>
-                    <strong>案例：</strong> 凯叔讲故事大数据体系改造，重构12大主题域，建立统一DQC体系，将关键链路出数时间大幅提前。
+                    <strong>案例：</strong> 凯叔讲故事大数据体系改造，重构12大主题域，建立统一DQC体系。
                 </p>
-                <a href="#" class="btn-outline">查看详情</a>
+                <button class="btn-outline" onclick="openModal('project2Modal')">查看详情</button>
             </div>
         </div>
 
@@ -511,36 +361,167 @@
                 <p>
                     跳出技术视角，深入业务场景。构建“人货场”分析框架与标签体系，直接支持精准营销与策略复盘。
                     <br><br>
-                    <strong>案例：</strong> 蘑菇街直播业务数据体系，打通人货场模型，沉淀“开播前-中-后”全链路分析框架。
+                    <strong>案例：</strong> 蘑菇街直播业务数据体系，打通人货场模型。
                 </p>
-                <a href="#" class="btn-outline">查看详情</a>
+                <button class="btn-outline" onclick="openModal('project3Modal')">查看详情</button>
             </div>
         </div>
-
     </section>
 
-    <!-- 底部图片墙 (已修复第三张图片) -->
     <section class="insta-grid">
         <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" class="insta-img" alt="Office">
         <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop" class="insta-img" alt="Meeting">
-        <!-- 已替换为数据仪表盘图片 -->
         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" class="insta-img" alt="Data Dashboard">
         <img src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc?q=80&w=2069&auto=format&fit=crop" class="insta-img" alt="Work">
     </section>
 
-    <!-- 页脚 -->
     <footer id="contact">
         <h2 style="font-family: 'Noto Serif SC'; margin-bottom: 20px;">准备好重塑您的数据资产了吗？</h2>
         <p style="margin-bottom: 30px;">欢迎通过以下方式与我联系，探讨数据体系建设与治理。</p>
-        
         <div style="margin-bottom: 40px; font-weight: bold; color: var(--dark-green);">
             18658867635 &nbsp;&nbsp;|&nbsp;&nbsp; styangguang@163.com
         </div>
-
-        <div class="footer-info">
-            版权所有 &copy; 2025 申屠阳光. 保留所有权利.
-        </div>
+        <div class="footer-info">版权所有 &copy; 2025 申屠阳光. 保留所有权利.</div>
     </footer>
+
+    <!-- ================= 弹窗内容区域 ================= -->
+
+    <!-- 1. 完整履历弹窗 -->
+    <div id="resumeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('resumeModal')">&times;</span>
+            <h2 class="modal-title">完整工作履历</h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">2024.10 - 至今</div>
+                <div class="timeline-role">资深数据工程师</div>
+                <div class="timeline-company">锐鲨科技有限公司</div>
+                <p>主导数据解决方案标准化，提升交付效率；深度对接核心客户（如凯叔讲故事），主导数据体系迁移与重构。</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2022.05 - 2024.06</div>
+                <div class="timeline-role">数据仓库组组长</div>
+                <div class="timeline-company">杭州云之重器科技有限公司</div>
+                <p>从0-1搭建通用数据模型与指标体系，适配电商/软件/新能源等多行业；支持经营分析与元数据管理。</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2020.11 - 2022.05</div>
+                <div class="timeline-role">数据仓库 TL</div>
+                <div class="timeline-company">杭州单创品牌管理 (VTN)</div>
+                <p>管理数仓团队，主导离线数仓架构建设、数据治理及数据质量保障体系。</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2015.08 - 2020.11</div>
+                <div class="timeline-role">资深数据仓库开发工程师</div>
+                <div class="timeline-company">蘑菇街</div>
+                <p>主导流量与直播业务数据体系建设，负责埋点设计与实时/离线数仓建模。</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">早期经历 (2006 - 2015)</div>
+                <div class="timeline-company">淘宝 / 招商银行软件中心 / 杭州东忠科技</div>
+                <p>拥有淘宝全球购/天猫家装数据建设经验，及招行信用卡数仓建设经验。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. 项目详情弹窗：数据体系 0-1 -->
+    <div id="project1Modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('project1Modal')">&times;</span>
+            <h2 class="modal-title">行业数据解决方案建设 (0→1)</h2>
+            <div class="modal-detail-section">
+                <h4>背景与痛点</h4>
+                <p>客户落地数据中台门槛高，数据引入困难，指标口径不清晰，难以沉淀画像与分析框架，导致“小白用户”难以快速产出价值。</p>
+            </div>
+            <div class="modal-detail-section">
+                <h4>解决方案</h4>
+                <ul class="modal-list">
+                    <li><strong>模型沉淀：</strong>基于行业经验沉淀“开箱即用”的通用模型，覆盖流量/交易/售后/评价等核心域。</li>
+                    <li><strong>多源接入：</strong>完成有赞/京东等多源数据标准化处理，实现统一模型融合。</li>
+                    <li><strong>分析框架：</strong>搭建“人货场”分析框架与系列看板，支持商品策略、活动复盘与渠道分析。</li>
+                </ul>
+            </div>
+            <div class="modal-detail-section">
+                <h4>最终成果</h4>
+                <p>客户无需从零搭建体系，即可直接进入分析与运营阶段，极大地缩短了数据价值变现周期。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 项目详情弹窗：数据治理 -->
+    <div id="project2Modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('project2Modal')">&times;</span>
+            <h2 class="modal-title">凯叔大数据体系改造项目</h2>
+            <div class="modal-detail-section">
+                <h4>背景与痛点</h4>
+                <p>原有数据体系建设缺失，埋点混乱，导致分析成本高、技术与业务脱节，无法支撑数据驱动决策。</p>
+            </div>
+            <div class="modal-detail-section">
+                <h4>关键行动</h4>
+                <ul class="modal-list">
+                    <li><strong>埋点重构：</strong>从0到1设计统一埋点规范，实现全业务场景覆盖。</li>
+                    <li><strong>数仓重构：</strong>基于业务特性划分12大主题域，完整覆盖用户全生命周期行为链路。</li>
+                    <li><strong>数据应用：</strong>重构10大核心报表体系与DMP平台5大标签体系，沉淀200+精准指标。</li>
+                </ul>
+            </div>
+            <div class="modal-detail-section">
+                <h4>最终成果</h4>
+                <p>实现了全链路行为覆盖，有效支撑了精准营销与精细化运营策略，显著提升了分析响应效率。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. 项目详情弹窗：业务驱动 -->
+    <div id="project3Modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('project3Modal')">&times;</span>
+            <h2 class="modal-title">直播数据体系建设 (蘑菇街)</h2>
+            <div class="modal-detail-section">
+                <h4>背景与痛点</h4>
+                <p>直播作为战略方向缺乏系统化数据支撑，运营无法有效进行监控、复盘和策略优化。</p>
+            </div>
+            <div class="modal-detail-section">
+                <h4>解决方案</h4>
+                <ul class="modal-list">
+                    <li><strong>数据集市：</strong>构建直播核心业务数据模型（实时+离线），覆盖曝光→观看→互动→成交全链路。</li>
+                    <li><strong>画像体系：</strong>构建用户画像和主播画像体系，用于人群匹配与运营。</li>
+                    <li><strong>方法论沉淀：</strong>沉淀“开播前触达 → 开播中监控 → 开播后复盘”的分析框架。</li>
+                </ul>
+            </div>
+            <div class="modal-detail-section">
+                <h4>最终成果</h4>
+                <p>打通了“人货场”数据，支撑运营对直播策略、排期、品类及主播组合进行科学评估与优化。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript 控制脚本 -->
+    <script>
+        // 打开弹窗
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+            document.body.style.overflow = "hidden"; // 禁止背景滚动
+        }
+
+        // 关闭弹窗
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+            document.body.style.overflow = "auto"; // 恢复背景滚动
+        }
+
+        // 点击弹窗外部空白处关闭
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+    </script>
 
 </body>
 </html>
